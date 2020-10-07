@@ -212,7 +212,7 @@
 (defmethod stream-append-gesture :before ((stream standard-input-stream) gesture)
   (check-type gesture character))
 
-(defmethod handle-event :after
+(defmethod handle-event
     ((client standard-input-stream) (event key-press-event))
   (when-let ((ch (event-char event)))
     (stream-append-gesture client ch)))
@@ -340,11 +340,11 @@ keys read."))
   ((pointer)
    (cursor :initarg :text-cursor)))
 
-(defmethod handle-event :after
+(defmethod handle-event
     ((client standard-extended-input-stream) (event key-press-event))
   (stream-append-gesture client event))
 
-(defmethod handle-event :after
+(defmethod handle-event
     ((client standard-extended-input-stream) (event pointer-event))
   (stream-append-gesture client event))
 
